@@ -1,0 +1,21 @@
+<%- include('../cabecalho.ejs') %>
+<h1>Editar Profissional</h1>
+<div><a href="/profissional/lst">Listar</a></div>
+<div>
+    <form method="post" action="/profissional/edt/<%= Profissional._id %>">
+        <label>Nome:</label>
+        <input type="text" name="nome" value="<%= Profissional.nome %>" required><br>
+        <label>Especialidade:</label>
+        <input type="text" name="especialidade" value="<%= Profissional.especialidade %>" required><br>
+        <label>Clientes:</label>
+        <select name="clientes" multiple>
+            <% const selecionados = Profissional.clientes.map(c => String(c._id)); %>
+            <% clientes.forEach(cliente => { %>
+                <option value="<%= cliente._id %>" <%= selecionados.includes(String(cliente._id)) ? 'selected' : '' %>><%= cliente.nome %></option>
+            <% }) %>
+        </select>
+        <br><br>
+        <button type="submit">Salvar</button>
+    </form>
+</div>
+<%- include('../rodape.ejs') %>

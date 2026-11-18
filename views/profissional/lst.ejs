@@ -1,0 +1,21 @@
+<%- include('../cabecalho.ejs') %>
+<h1>Profissionais</h1>
+<div>
+    <form action="/profissional/lst" method="post">
+        <input type="text" name="filtro" placeholder="Digite o nome">
+        <button type="submit">Pesquisar</button>
+    </form>
+</div>
+<a href="/profissional/add">+ Profissional</a>
+<table>
+    <tr><th>Nome</th><th>Especialidade</th><th>Clientes</th><th>Ações</th></tr>
+    <% for (const profissional of Profissionais) { %>
+    <tr>
+        <td><%= profissional.nome %></td>
+        <td><%= profissional.especialidade %></td>
+        <td><%= profissional.clientes.map(cliente => cliente ? cliente.nome : '').filter(Boolean).join(', ') %></td>
+        <td><a href="/profissional/edt/<%= profissional._id %>">Editar</a> <a href="/profissional/del/<%= profissional._id %>">Excluir</a></td>
+    </tr>
+    <% } %>
+</table>
+<%- include('../rodape.ejs') %>

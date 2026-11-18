@@ -1,0 +1,22 @@
+<%- include('../cabecalho.ejs') %>
+<h1>Clientes</h1>
+<div>
+    <form action="/cliente/lst" method="post">
+        <input type="text" name="filtro" placeholder="Digite o nome">
+        <button type="submit">Pesquisar</button>
+    </form>
+</div>
+<a href="/cliente/add">+ Cliente</a>
+<table>
+    <tr><th>Nome</th><th>Data de Nascimento</th><th>Telefone</th><th>Foto</th><th>Ações</th></tr>
+    <% for (const cliente of Clientes) { %>
+    <tr>
+        <td><%= cliente.nome %></td>
+        <td><%= cliente.dataNasc ? cliente.dataNasc.toLocaleDateString('pt-BR') : '' %></td>
+        <td><%= cliente.telefone %></td>
+        <td><% if (cliente.foto) { %><img src="<%= cliente.foto %>" width="100" height="100"><% } %></td>
+        <td><a href="/cliente/edt/<%= cliente._id %>">Editar</a> <a href="/cliente/del/<%= cliente._id %>">Excluir</a></td>
+    </tr>
+    <% } %>
+</table>
+<%- include('../rodape.ejs') %>

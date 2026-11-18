@@ -1,0 +1,17 @@
+<%- include('../cabecalho.ejs') %>
+<h1>Adicionar Cliente</h1>
+<div><a href="/cliente/lst">Listar</a></div>
+<div>
+    <form method="post" action="/cliente/add" enctype="multipart/form-data">
+        <label>Nome:</label>
+        <input type="text" name="nome" required><br>
+        <label>Data de Nascimento:</label>
+        <input type="date" name="dataNasc" required><br>
+        <label>Telefone:</label>
+        <input type="tel" name="telefone" required><br>
+        <label>Foto:</label>
+        <input type="file" name="foto" accept="image/*"><br><br>
+        <button type="submit">Cadastrar</button>
+    </form>
+</div>
+<%- include('../rodape.ejs') %>

@@ -1,0 +1,24 @@
+<%- include('../cabecalho.ejs') %>
+<h1>Editar Cliente</h1>
+<div><a href="/cliente/lst">Listar</a></div>
+<div>
+    <form method="post" action="/cliente/edt/<%= Cliente._id %>" enctype="multipart/form-data">
+        <label>Nome:</label>
+        <input type="text" name="nome" value="<%= Cliente.nome %>" required><br>
+        <label>Data de Nascimento:</label>
+        <input type="date" name="dataNasc" value="<%= Cliente.dataNasc ? Cliente.dataNasc.toISOString().split('T')[0] : '' %>" required><br>
+        <label>Telefone:</label>
+        <input type="tel" name="telefone" value="<%= Cliente.telefone %>" required><br>
+        <label>Foto atual:</label><br>
+        <% if (Cliente.foto) { %>
+            <img src="<%= Cliente.foto %>" width="150" height="150">
+        <% } else { %>
+            <p>Este cliente não possui foto.</p>
+        <% } %>
+        <br><br>
+        <label>Trocar foto:</label>
+        <input type="file" name="foto" accept="image/*"><br><br>
+        <button type="submit">Salvar</button>
+    </form>
+</div>
+<%- include('../rodape.ejs') %>
